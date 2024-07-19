@@ -2,8 +2,9 @@ export class Router {
     constructor() {
         this.routes = {
             '/': 'login.html',
-            '/content': 'content.html',
+            '/dashboard': 'dashboard.html',
             '/employees': 'employees.html',
+            '/products':  'productos.html',
         };
     }
 
@@ -47,7 +48,7 @@ export class Router {
                 // Simulación de autenticación
                 if (email && password) {
                     sessionStorage.setItem('authenticated', 'true');
-                    window.location.hash = '/content'; // Navegar a la página de contenido
+                    window.location.hash = '/dashboard'; // Navegar a la página de contenido
                 } else {
                     alert('Invalid credentials');
                 }
@@ -55,7 +56,7 @@ export class Router {
 
             // Redirigir si ya está autenticado
             if (sessionStorage.getItem('authenticated') === 'true') {
-                window.location.hash = '/content'; // Redirigir si ya está autenticado
+                window.location.hash = '/dashboard'; // Redirigir si ya está autenticado
             }
         }
     }
