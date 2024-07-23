@@ -2,15 +2,14 @@ export class Router {
     constructor() {
         this.routes = {
             '/': 'login.html',
-            '/dashboard': 'dashboard.html'
+            '/dashboard': 'dashboard.html',
+            '/employees': 'employees.html',
+            '/productos': 'productos.html'
         };
     }
 
     init() {
-        // Cargar el index.html inicialmente
-        this.loadRoute('/');
-
-        // Manejar eventos de hashchange para la navegación
+        this.handleHashChange();
         window.addEventListener('hashchange', () => this.handleHashChange());
     }
 
@@ -31,14 +30,38 @@ export class Router {
                 .then(html => {
                     document.getElementById('content-area').innerHTML = html;
 
-                    // Inicializar la lógica según la ruta
                     if (path === '/') {
+                        this.loadLoginStyles();
                         this.initLogin();
-                    } else if (path === '/dashboard') {
-                        this.initDashboard();
+                    } else {
+                        this.removeLoginStyles();
+                        if (path === '/dashboard') {
+                            this.initDashboard();
+                        } else if (path === '/employees') {
+                            this.initEmployees();
+                        } else if (path === '/productos') {
+                            this.initProducts();
+                        }
+                        // Inicializa el botón de logout en todas las páginas
+                        this.initLogout();
                     }
                 })
                 .catch(error => console.error('Error loading HTML:', error));
+        }
+    }
+
+    loadLoginStyles() {
+        const link = document.createElement('link');
+        link.id = 'login-styles';
+        link.rel = 'stylesheet';
+        link.href = '/css/login.css';
+        document.head.appendChild(link);
+    }
+
+    removeLoginStyles() {
+        const link = document.getElementById('login-styles');
+        if (link) {
+            document.head.removeChild(link);
         }
     }
 
@@ -50,7 +73,6 @@ export class Router {
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
 
-                // Verificar credenciales con la API
                 fetch('https://655133be7d203ab6626ea39e.mockapi.io/users')
                     .then(response => {
                         if (!response.ok) throw new Error('Network response was not ok');
@@ -68,7 +90,6 @@ export class Router {
                     .catch(error => console.error('Error fetching users:', error));
             });
 
-            // Redirigir si ya está autenticado
             if (sessionStorage.getItem('authenticated') === 'true') {
                 this.redirectToDashboard();
             }
@@ -76,6 +97,18 @@ export class Router {
     }
 
     initDashboard() {
+        // Lógica específica para la página del dashboard
+    }
+
+    initEmployees() {
+        // Lógica específica para la página de empleados
+    }
+
+    initProducts() {
+        // Lógica específica para la página de productos
+    }
+
+    initLogout() {
         const logoutButton = document.getElementById('logout-button');
         if (logoutButton) {
             logoutButton.addEventListener('click', () => {
@@ -86,14 +119,14 @@ export class Router {
     }
 
     redirectToDashboard() {
-        // Redirigir a dashboard.html y limpiar el hash de la URL
-        window.location.hash = '/dashboard'; // Establecer el hash a '/dashboard'
-        window.location.href = 'dashboard.html'; // Cambiar la URL a dashboard.html
+        window.location.hash = '/dashboard';
     }
 
     redirectToLogin() {
-        // Redirigir a login.html y limpiar el hash de la URL
-        window.location.hash = ''; // Limpiar el hash
-        window.location.href = 'index.html'; // Cambiar la URL a index.html
+        window.location.hash = '';
     }
 }
+
+// Inicializar el router
+const router = new Router();
+router.init();

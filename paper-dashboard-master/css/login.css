@@ -1,6 +1,12 @@
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #4b79a1, #283e51); /* Azul y gris */
+    background-image: url('/img/fondo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+
     height: 100vh;
     margin: 0;
     display: flex;
@@ -8,17 +14,32 @@ body {
     align-items: center;
 }
 
+
+
+
+
 .login-container {
     display: flex;
     justify-content: flex-end; /* Alinear el formulario a la derecha */
     align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    height: 80vh;
+    width: 45vh;
+    height: 90vh;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    left: 650px;
+    position: relative;
+}
+
+.login-title{
+    position: relative;
+    bottom: 150px;
+}
+
+.login-subtitle {
+    position: relative;
+    bottom: 150px;
 }
 
 .image-container {
@@ -47,6 +68,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    
 }
 
 .login-content form label {
@@ -60,21 +82,83 @@ body {
     border-radius: 5px;
 }
 
-.login-content form button {
-    padding: 10px;
+.boton {	
     background-color: #007bff;
-    color: white;
+    color: #fff;
     border: none;
     border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    position: relative;
+    top: 100px;
+
+
+
 }
 
 .login-content form button:hover {
-    background-color: #0056b3;
+    background-color: #1962b1;
 }
+
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 500px;
+
+}
+
+.img-supra {
+    width: 20%;
+    height: 20%;
+    object-fit: cover;
+    position: relative;
+    top: 50px;
+    right: 50px;
+}	
+
 
 .hidden {
     display: none;
+}
+.form-control {	
+    position: relative;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    width: 100%;
+
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;      
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+    color: #007bff;
 }
 
 #logout-button {
