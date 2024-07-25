@@ -1,10 +1,17 @@
+import * as sidebar from './sidebar.js';
+
 export class Router {
     constructor() {
         this.routes = {
             '/': 'login.html',
-            '/dashboard': 'dashboard.html',
-            '/employees': 'employees.html',
-            '/productos': 'productos.html'
+            '/menu': 'menu.html',
+            '/sidebar': 'sidebar.html',
+            '/productos': 'productos.html',
+            '/rubros': 'rubros.html',
+            '/marcas': 'marcas.html',
+            '/ofertas': 'ofertas.html',
+            '/combos': 'combos.html',
+            '/novedades': 'novedades.html'
         };
     }
 
@@ -29,40 +36,121 @@ export class Router {
                 })
                 .then(html => {
                     document.getElementById('content-area').innerHTML = html;
+                    this.removeAllStyles();
 
                     if (path === '/') {
                         this.loadLoginStyles();
                         this.initLogin();
+                        this.hideSidebarNavbar();
                     } else {
-                        this.removeLoginStyles();
-                        if (path === '/dashboard') {
-                            this.initDashboard();
-                        } else if (path === '/employees') {
-                            this.initEmployees();
+                        if (path === '/menu') {
+                            this.loadMenuStyles();
+                            this.initMenu();
                         } else if (path === '/productos') {
+                            this.loadProductsStyles();
                             this.initProducts();
+                        } else if (path === '/rubros') {
+                            this.loadRubrosStyles();
+                            this.initRubros();
+                        } else if (path === '/marcas') {
+                            this.loadMarcasStyles();
+                            this.initMarcas();
+                        } else if (path === '/ofertas') {
+                            this.loadOfertasStyles();
+                            this.initOfertas();
+                        } else if (path === '/combos') {
+                            this.loadCombosStyles();
+                            this.initCombos();
+                        } else if (path === '/novedades') {
+                            this.loadNovedadesStyles();
+                            this.initNovedades();
                         }
-                        // Inicializa el botón de logout en todas las páginas
-                        this.initLogout();
+                        this.showSidebarNavbar();
+                        
                     }
+
+                    sidebar.updateSidebarActiveLink(path);
                 })
                 .catch(error => console.error('Error loading HTML:', error));
         }
     }
 
+
+
     loadLoginStyles() {
+        this.loadStyles('login-styles', '/css/login.css');
+    }
+
+    loadMenuStyles() {
+        this.loadStyles('menu-styles', '/css/menu.css');
+    }
+
+    loadProductosStyles() {
+        this.loadStyles('productos-styles', '/css/productos.css');
+    }
+
+    loadProductsStyles() {
+        this.loadStyles('products-styles', '/css/productos.css');
+    }
+
+    loadRubrosStyles() {
+        this.loadStyles('rubros-styles', '/css/rubros.css');
+    }
+
+    loadMarcasStyles() {
+        this.loadStyles('marcas-styles', '/css/marcas.css');
+    }
+
+    loadOfertasStyles() {
+        this.loadStyles('ofertas-styles', '/css/ofertas.css');
+    }
+
+    loadCombosStyles() {
+        this.loadStyles('combos-styles', '/css/combos.css');
+    }
+
+    loadNovedadesStyles() {
+        this.loadStyles('novedades-styles', '/css/novedades.css');
+    }
+
+    loadStyles(id, href) {
         const link = document.createElement('link');
-        link.id = 'login-styles';
+        link.id = id;
         link.rel = 'stylesheet';
-        link.href = '/css/login.css';
+        link.href = href;
         document.head.appendChild(link);
     }
 
-    removeLoginStyles() {
-        const link = document.getElementById('login-styles');
-        if (link) {
-            document.head.removeChild(link);
-        }
+    removeAllStyles() {
+        ['login-styles', 'menu-styles', 'employees-styles', 'products-styles', 'rubros-styles', 'marcas-styles', 'ofertas-styles', 'combos-styles', 'novedades-styles'].forEach(id => {
+            const link = document.getElementById(id);
+            if (link) {
+                document.head.removeChild(link);
+            }
+        });
+    }
+
+    hideSidebarNavbar() {
+        document.getElementById('sidebar-container').innerHTML = '';
+        document.getElementById('navbar-container').innerHTML = '';
+    }
+
+
+    showSidebarNavbar() {
+        fetch('sidebar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('sidebar-container').innerHTML = html;
+                sidebar.initLogout(); // Llama a initLogout después de cargar el sidebar
+                sidebar.updateSidebarActiveLink(window.location.hash.replace('#', '') || '/');
+                this.loadStyles('novedades-styles', '/css/sidebar.css');
+            });
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar-container').innerHTML = html;
+                sidebar.initLogout(); // Llama a initLogout después de cargar el navbar
+            });
     }
 
     initLogin() {
@@ -82,7 +170,7 @@ export class Router {
                         const user = users.find(user => user.email === email && user.password === password);
                         if (user) {
                             sessionStorage.setItem('authenticated', 'true');
-                            this.redirectToDashboard();
+                            this.redirectToMenu();
                         } else {
                             alert('Invalid credentials');
                         }
@@ -91,39 +179,45 @@ export class Router {
             });
 
             if (sessionStorage.getItem('authenticated') === 'true') {
-                this.redirectToDashboard();
+                this.redirectToMenu();
             }
         }
     }
 
-    initDashboard() {
-        // Lógica específica para la página del dashboard
+    redirectToMenu() {
+        window.location.hash = '#/menu';
+    }
+
+    initMenu() {
+        // Lógica de inicialización del menu
     }
 
     initEmployees() {
-        // Lógica específica para la página de empleados
+        // Lógica de inicialización de employees
     }
 
     initProducts() {
-        // Lógica específica para la página de productos
+        // Lógica de inicialización de productos
     }
 
-    initLogout() {
-        const logoutButton = document.getElementById('logout-button');
-        if (logoutButton) {
-            logoutButton.addEventListener('click', () => {
-                sessionStorage.removeItem('authenticated');
-                this.redirectToLogin();
-            });
-        }
+    initRubros() {
+        // Lógica de inicialización de rubros
     }
 
-    redirectToDashboard() {
-        window.location.hash = '/dashboard';
+    initMarcas() {
+        // Lógica de inicialización de marcas
     }
 
-    redirectToLogin() {
-        window.location.hash = '';
+    initOfertas() {
+        // Lógica de inicialización de ofertas
+    }
+
+    initCombos() {
+        // Lógica de inicialización de combos
+    }
+
+    initNovedades() {
+        // Lógica de inicialización de novedades
     }
 }
 
