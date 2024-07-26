@@ -206,6 +206,7 @@ input:valid ~ label {
 
 .main-panel {	
     background-color: transparent;
+    transition: none;
 }
 
 #content-area {	
