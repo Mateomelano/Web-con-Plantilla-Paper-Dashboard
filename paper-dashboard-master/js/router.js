@@ -37,6 +37,7 @@ export class Router {
                 .then(html => {
                     document.getElementById('content-area').innerHTML = html;
                     this.removeAllStyles();
+                    
 
                     if (path === '/') {
                         this.loadLoginStyles();
@@ -48,6 +49,7 @@ export class Router {
                             this.initMenu();
                         } else if (path === '/productos') {
                             this.loadProductsStyles();
+                            this.loadProductsScripts();
                             this.initProducts();
                         } else if (path === '/rubros') {
                             this.loadRubrosStyles();
@@ -85,8 +87,8 @@ export class Router {
         this.loadStyles('menu-styles', '/css/menu.css');
     }
 
-    loadProductosStyles() {
-        this.loadStyles('productos-styles', '/css/productos.css');
+    loadProductsScripts() {
+        this.loadScripts('products-scripts', '/js/carrito.js');
     }
 
     loadProductsStyles() {
@@ -121,11 +123,27 @@ export class Router {
         document.head.appendChild(link);
     }
 
+    loadScripts(id, src) {
+        const script = document.createElement('script');
+        script.id = id;
+        script.src = src;
+        document.body.appendChild(script);
+    }
+
     removeAllStyles() {
         ['login-styles', 'menu-styles', 'employees-styles', 'products-styles', 'rubros-styles', 'marcas-styles', 'ofertas-styles', 'combos-styles', 'novedades-styles'].forEach(id => {
             const link = document.getElementById(id);
             if (link) {
                 document.head.removeChild(link);
+            }
+        });
+    }
+
+    removeAllScripts() {
+        ['login-scripts', 'menu-scripts', 'products-scripts', 'rubros-scripts', 'marcas-scripts', 'ofertas-scripts', 'combos-scripts', 'novedades-scripts'].forEach(id => {
+            const script = document.getElementById(id);
+            if (script) {
+                document.body.removeChild(script);
             }
         });
     }
