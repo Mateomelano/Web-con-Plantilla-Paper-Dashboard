@@ -2,18 +2,38 @@
     const btnCart = document.querySelector('.container-cart-icon');
     const containerCartProducts = document.querySelector('.container-cart-products');
 
+    console.log(btnCart);  // Verificar si btnCart está correctamente seleccionado
+    console.log(containerCartProducts);  // Verificar si containerCartProducts está correctamente seleccionado
+
+    // Verifica si la clase hidden-cart está presente al cargar la página
+    console.log('Initial classes:', containerCartProducts.classList);
+
+    let isHidden = true;
+
     btnCart.addEventListener('click', () => {
-        containerCartProducts.classList.toggle('hidden-cart');
+        console.log('Botón de carrito clickeado');
+        if (isHidden) {
+            containerCartProducts.classList.remove('hidden-cart');
+        } else {
+            containerCartProducts.classList.add('hidden-cart');
+        }
+        isHidden = !isHidden; // Alternar el estado
+        console.log('Current classes:', containerCartProducts.classList);
     });
 
+    // Resto del código relacionado con el carrito
     const cartInfo = document.querySelector('.cart-product');
     const rowProduct = document.querySelector('.row-product');
     const productsList = document.querySelector('.container-items');
-    let allProducts = [];
+    let allProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
     const valorTotal = document.querySelector('.total-pagar');
     const countProducts = document.querySelector('#contador-productos');
     const cartEmpty = document.querySelector('.cart-empty');
     const cartTotal = document.querySelector('.cart-total');
+
+    const saveCart = () => {
+        localStorage.setItem('cartProducts', JSON.stringify(allProducts));
+    };
 
     productsList.addEventListener('click', e => {
         if (e.target.classList.contains('btn-add-cart')) {
@@ -25,11 +45,11 @@
                 price: product.querySelector('p').textContent,
             };
 
-            const exits = allProducts.some(
+            const exists = allProducts.some(
                 product => product.title === infoProduct.title
             );
 
-            if (exits) {
+            if (exists) {
                 const products = allProducts.map(product => {
                     if (product.title === infoProduct.title) {
                         product.quantity++;
@@ -43,6 +63,7 @@
                 allProducts = [...allProducts, infoProduct];
             }
 
+            saveCart();
             showHTML();
         }
     });
@@ -56,6 +77,7 @@
                 product => product.title !== title
             );
 
+            saveCart();
             showHTML();
         }
     });
@@ -111,4 +133,6 @@
         valorTotal.innerText = `$${total}`;
         countProducts.innerText = totalOfProducts;
     };
+
+    showHTML(); // Mostrar los productos al cargar la página
 })();

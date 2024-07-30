@@ -7,12 +7,13 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Tienda</title>
+
 	</head>
 	<body>
 		<header>
-			<h1>Tienda</h1>
-
+			<div class="search-bar">
+				<input type="text" id="search-input" placeholder="Buscar productos...">
+			</div>
 			<div class="container-icon">
 				<div class="container-cart-icon">
 					<svg
@@ -33,32 +34,17 @@
 						<span id="contador-productos">0</span>
 					</div>
 				</div>
-
 				<div class="container-cart-products hidden-cart">
 					<div class="row-product hidden">
 						<div class="cart-product">
 							<div class="info-cart-product">
 								<span class="cantidad-producto-carrito">1</span>
 								<p class="titulo-producto-carrito">Zapatos Nike</p>
+								<span class="precio-producto-carrito">#1</span>
 								<span class="precio-producto-carrito">$80</span>
 							</div>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								class="icon-close"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M6 18L18 6M6 6l12 12"
-								/>
-							</svg>
 						</div>
 					</div>
-
 					<div class="cart-total hidden">
 						<h3>Total:</h3>
 						<span class="total-pagar">$200</span>
@@ -77,10 +63,12 @@
 				</figure>
 				<div class="info-product">
 					<h2>Zapatos Nike</h2>
-					<p class="price">$80</p>
+					<p class="price">$50</p>
+					<p class="code"> Codigo: #1</p>
+					<p class="stock"> Stock: #1</p>
 					<button class="btn-add-cart">Añadir al carrito</button>
 				</div>
-			</div>
+			</div> <!-- Fin Producto -->
 			<div class="item">
 				<figure>
 					<img
@@ -90,10 +78,12 @@
 				</figure>
 				<div class="info-product">
 					<h2>Audifonos</h2>
-					<p class="price">$20</p>
+					<p class="price">$50</p>
+					<p class="code"> Codigo: #1</p>
+					<p class="stock"> Stock: #1</p>
 					<button class="btn-add-cart">Añadir al carrito</button>
 				</div>
-			</div>
+			</div><!-- Fin Producto -->
 			<div class="item">
 				<figure>
 					<img
@@ -104,9 +94,11 @@
 				<div class="info-product">
 					<h2>Reloj</h2>
 					<p class="price">$50</p>
+					<p class="code"> Codigo: #1</p>
+					<p class="stock"> Stock: #1</p>
 					<button class="btn-add-cart">Añadir al carrito</button>
 				</div>
-			</div>
+			</div><!-- Fin Producto -->
 			<div class="item">
 				<figure>
 					<img
@@ -116,23 +108,103 @@
 				</figure>
 				<div class="info-product">
 					<h2>Smartwatch</h2>
-					<p class="price">$90</p>
+					<p class="price">$50</p>
+					<p class="code"> Codigo: #1</p>
+					<p class="stock"> Stock: #1</p>
 					<button class="btn-add-cart">Añadir al carrito</button>
 				</div>
-			</div>
+			</div> <!-- Fin Producto -->
 			<div class="item">
 				<figure>
 					<img
-						src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
+						src="/img/producto.webp"
 						alt="producto"
 					/>
 				</figure>
 				<div class="info-product">
 					<h2>Perfume</h2>
 					<p class="price">$50</p>
+					<p class="code"> Codigo: #1</p>
+					<p class="stock"> Stock: #1</p>
 					<button class="btn-add-cart">Añadir al carrito</button>
 				</div>
 			</div>
-		</div>
+			<div class="item">
+				<figure>
+					<img
+						src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Zapatos Nike</h2>
+					<p class="price">$50</p>
+					<p class="code"> Codigo: #1</p>
+					<p class="stock"> Stock: #1</p>
+					<button class="btn-add-cart">Añadir al carrito</button>
+				</div>
+			</div> <!-- Fin Producto -->
+			<div class="item">
+				<figure>
+					<img
+						src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Audifonos</h2>
+					<p class="price">$50</p>
+					<p class="code"> Codigo: #1</p>
+					<p class="stock"> Stock: #1</p>
+					<button class="btn-add-cart">Añadir al carrito</button>
+				</div>
+			</div><!-- Fin Producto -->
+			<div class="item">
+				<figure>
+					<img
+						src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1099&q=80"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Reloj</h2>
+					<p class="price">$50</p>
+					<p class="code"> Codigo: #1</p>
+					<p class="stock"> Stock: #1</p>
+					<button class="btn-add-cart">Añadir al carrito</button>
+				</div>
+			</div><!-- Fin Producto -->
+			<div class="item">
+				<figure>
+					<img
+						src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Smartwatch</h2>
+					<p class="price">$50</p>
+					<p class="code"> Codigo: #1</p>
+					<p class="stock"> Stock: #1</p>
+					<button class="btn-add-cart">Añadir al carrito</button>
+				</div>
+			</div> <!-- Fin Producto -->
+			<div class="item">
+				<figure>
+					<img
+						src="/img/producto.webp"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Perfume</h2>
+					<p class="price">$50</p>
+					<p class="code"> Codigo: #1</p>
+					<p class="stock"> Stock: #1</p>
+					<button class="btn-add-cart">Añadir al carrito</button>
+				</div>
+			</div>
+		</div> <!-- Fin Container -->
+		
 	</body>
 </html>

@@ -20,14 +20,13 @@
     width: 40px;
     height: 40px;
     stroke: #000;
+    position: relative;
+    top: 5px;
+    left: 600px;
 }
 
 .icon-cart:hover{
     cursor: pointer;
-}
-
-img{
-    max-width: 100%;
 }
 
 /* Header */
@@ -44,7 +43,7 @@ header{
 .count-products{
     position: absolute;
     top: 55%;
-    right: 0;
+    left: 620px;
 
     background-color: #000;
     color: #fff;
@@ -64,7 +63,7 @@ header{
 .container-cart-products{
     position: absolute;
     top: 50px;
-    right: 0;
+    left: 200px;
 
     background-color: #fff;
     width: 400px;
@@ -143,24 +142,41 @@ header{
 /* Main */
 .container-items{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    
 }
 
-.item{
-    border-radius: 10px;
-}
-
-.item:hover{
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+    justify-content: center; /* Centrar verticalmente */
+    text-align: justify; /* Centrar el texto */
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+    
 }
 
-.item img{
-    width: 100%;
-    height: 300px;
+
+
+.code{
+    font-size: 18px;
+    color: black;
+}
+
+.stock{
+    font-size: 18px;
+    color: black;
+}
+
+.item img {
+    width: 100%;   
+    height: 200px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
     transition: all .5s;
+    display: block;
+
 }
 
 .item figure{
@@ -177,11 +193,13 @@ header{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    
 }
 
 .price{
     font-size: 18px;
     font-weight: 900;
+    border-bottom: #000 1px solid;
 }
 
 .info-product button{
@@ -201,4 +219,43 @@ header{
 
 .hidden{
     display: none;
+}
+
+
+
+
+.search-bar {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    right: 680px;    
+    padding: 10px 0;
+    width: 300%;
+    margin-top: 20px;
+    top: 60px;
+}
+
+#search-input {
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+@media screen and (max-width: 1600px) {
+    .container-items{
+        grid-template-columns: repeat(3, 1fr);
+    }  
+    .count-products{
+        left: 450px;
+    }
+    .icon-cart{
+        left: 460px;
+    }
+    .container-cart-products{
+        left: 100px;
+    }
 }
