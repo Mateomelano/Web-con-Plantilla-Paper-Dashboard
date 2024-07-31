@@ -3,8 +3,6 @@
     const productsList = document.querySelectorAll('.item');
     const productContainer = document.getElementById('product-container');
 
-    console.log(searchInput);  // Verificar si searchInput está correctamente seleccionado
-    console.log(productsList);  // Verificar si productsList está correctamente seleccionado
 
     searchInput.addEventListener('input', () => {
         const searchTerm = searchInput.value.toLowerCase();

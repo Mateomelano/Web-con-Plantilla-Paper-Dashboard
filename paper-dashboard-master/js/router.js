@@ -90,6 +90,7 @@ export class Router {
     loadProductsScripts() {
         this.loadScripts('products-scripts', '/js/carrito.js');
         this.loadScripts('products-scripts', '/js/searchbar.js');
+        this.loadScripts('products-scripts', '/js/searchmarca.js');
     }
 
     loadProductsStyles() {

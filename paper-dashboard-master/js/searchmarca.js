@@ -21,6 +21,7 @@
     const countProducts = document.querySelector('#contador-productos');
     const cartEmpty = document.querySelector('.cart-empty');
     const cartTotal = document.querySelector('.cart-total');
+    const filterMarca = document.querySelector('#filter-marca');
 
     const saveCart = () => {
         localStorage.setItem('cartProducts', JSON.stringify(allProducts));
@@ -124,6 +125,23 @@
         valorTotal.innerText = `$${total}`;
         countProducts.innerText = totalOfProducts;
     };
+
+    const filterProductsByMarca = (marca) => {
+        const items = document.querySelectorAll('.container-items .item');
+        items.forEach(item => {
+            const productMarca = item.querySelector('.marca').textContent.trim();
+            if (marca === 'all' || productMarca.includes(marca)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    };
+
+    filterMarca.addEventListener('change', (e) => {
+        const selectedMarca = e.target.value;
+        filterProductsByMarca(selectedMarca);
+    });
 
     showHTML(); // Mostrar los productos al cargar la página
 })();

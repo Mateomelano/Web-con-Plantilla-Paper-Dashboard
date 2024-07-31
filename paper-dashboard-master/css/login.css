@@ -7,7 +7,6 @@ body {
     background-attachment: fixed;
     background-position: center;
     z-index: 100;
-
     height: 100vh;
     margin: 0;
     display: flex;
@@ -59,7 +58,6 @@ body {
     flex-direction: column;
     padding: 40px;
     flex: 1;
-    max-width: 400px;
 }
 
 .login-content h2 {
@@ -172,7 +170,6 @@ input:valid ~ label {
 .content-container {
     display: flex;
     justify-content: center;
-    align-items: center;
     position: relative;
     right: 600px;
     bottom: 200px;
@@ -182,7 +179,6 @@ input:valid ~ label {
 .contact-container {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
     text-align: justify;
     position: relative;
