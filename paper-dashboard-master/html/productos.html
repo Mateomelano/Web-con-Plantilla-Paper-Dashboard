@@ -14,11 +14,18 @@
 			<div class="search-container">
 				<div class="search-bar">
 					<div class="search-bar-container">
-						<input type="text" id="search-input" placeholder="Buscar productos...">	
+						<input type="text" id="search-input" placeholder="Buscar productos...">
+						<button id="filter-button">FILTRAR+</button>
 					</div>
 				</div>
-
+			
 				<div class="filter-bar">
+					<button id="filter-solo-ofertas">Sólo Ofertas</button>
+					<button id="filter-solo-con-stock">Sólo con stock</button>
+					<span id="product-count">382 productos encontrados</span>
+				</div>
+			
+				<div class="filter-options hidden" id="filter-options">
 					<select id="filter-marca">
 						<option value="all">Todas las marcas</option>
 						<option value="NIKE">NIKE</option>
@@ -26,9 +33,9 @@
 						<option value="Puma">Puma</option>
 						<!-- Agrega más opciones de marca según sea necesario -->
 					</select>
+					<!-- Agrega más filtros según sea necesario -->
 				</div>
 			</div>
-
 			<div class="container-icon">
 				<div class="container-cart-icon">
 					<svg
