@@ -91,6 +91,7 @@ export class Router {
         this.loadScripts('products-scripts', '/js/carrito.js');
         this.loadScripts('products-scripts', '/js/searchbar.js');
         this.loadScripts('products-scripts', '/js/searchmarca.js');
+        this.loadScripts('products-scripts', '/js/botones.js');
     }
 
     loadProductsStyles() {
@@ -180,7 +181,7 @@ export class Router {
                 e.preventDefault();
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
-
+    
                 fetch('https://655133be7d203ab6626ea39e.mockapi.io/users')
                     .then(response => {
                         if (!response.ok) throw new Error('Network response was not ok');
@@ -192,12 +193,16 @@ export class Router {
                             sessionStorage.setItem('authenticated', 'true');
                             this.redirectToMenu();
                         } else {
-                            alert('Invalid credentials');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error de autenticación',
+                                text: 'Las credenciales no son válidas',
+                            });
                         }
                     })
                     .catch(error => console.error('Error fetching users:', error));
             });
-
+    
             if (sessionStorage.getItem('authenticated') === 'true') {
                 this.redirectToMenu();
             }

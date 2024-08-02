@@ -10,71 +10,70 @@
 
 	</head>
 	<body>
-		<header>
-			<div class="search-container">
-				<div class="search-bar">
-					<div class="search-bar-container">
-						<input type="text" id="search-input" placeholder="Buscar productos...">
-						<button id="filter-button">FILTRAR+</button>
-					</div>
-				</div>
-			
-				<div class="filter-bar">
-					<button id="filter-solo-ofertas">Sólo Ofertas</button>
-					<button id="filter-solo-con-stock">Sólo con stock</button>
-					<span id="product-count">382 productos encontrados</span>
-				</div>
-			
-				<div class="filter-options hidden" id="filter-options">
-					<select id="filter-marca">
-						<option value="all">Todas las marcas</option>
-						<option value="NIKE">NIKE</option>
-						<option value="Adidas">Adidas</option>
-						<option value="Puma">Puma</option>
-						<!-- Agrega más opciones de marca según sea necesario -->
-					</select>
-					<!-- Agrega más filtros según sea necesario -->
-				</div>
-			</div>
-			<div class="container-icon">
-				<div class="container-cart-icon">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke-width="1.5"
-						stroke="currentColor"
-						class="icon-cart"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-						/>
-					</svg>
-					<div class="count-products">
-						<span id="contador-productos">0</span>
-					</div>
-				</div>
-				<div class="container-cart-products hidden-cart">
-					<div class="row-product hidden">
-						<div class="cart-product">
-							<div class="info-cart-product">
-								<span class="cantidad-producto-carrito">1</span>
-								<p class="titulo-producto-carrito">Zapatos Nike</p>
-								<span class="precio-producto-carrito">#1</span>
-								<span class="precio-producto-carrito">$80</span>
-							</div>
-						</div>
-					</div>
-					<div class="cart-total hidden">
-						<h3>Total:</h3>
-						<span class="total-pagar">$200</span>
-					</div>
-					<p class="cart-empty">El carrito está vacío</p>
-				</div>
-			</div>
-		</header>
+    <header>
+        <div class="search-container">
+            <div class="search-bar">
+                <div class="search-bar-container">
+                    <input type="text" id="search-input" placeholder="Buscar productos...">
+                    <button id="filter-button">FILTRAR+</button>
+                </div>
+            </div>
+
+            <div class="filter-bar">
+                <button id="filter-solo-ofertas">Sólo Ofertas</button>
+                <button id="filter-solo-con-stock">Sólo con stock</button>
+                <span id="product-count">382 productos encontrados</span>
+            </div>
+
+            <div class="filter-options hidden" id="filter-options">
+                <select id="filter-marca">
+                    <option value="all">Todas las marcas</option>
+                    <option value="NIKE">NIKE</option>
+                    <option value="Shell">Shell</option>
+                    <!-- Agrega más opciones de marca según sea necesario -->
+                </select>
+                <!-- Agrega más filtros según sea necesario -->
+            </div>
+        </div>
+        <div class="container-icon">
+            <div class="container-cart-icon">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="icon-cart"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                    />
+                </svg>
+                <div class="count-products">
+                    <span id="contador-productos">0</span>
+                </div>
+            </div>
+            <div class="container-cart-products hidden-cart">
+                <div class="row-product hidden">
+                    <div class="cart-product">
+                        <div class="info-cart-product">
+                            <span class="cantidad-producto-carrito">1</span>
+                            <p class="titulo-producto-carrito">Zapatos Nike</p>
+                            <span class="precio-producto-carrito">#1</span>
+                            <span class="precio-producto-carrito">$80</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-total hidden">
+                    <h3>Total:</h3>
+                    <span class="total-pagar">$200</span>
+                </div>
+                <p class="cart-empty">El carrito está vacío</p>
+            </div>
+        </div>
+    </header>
 		<div class="container-items">
 			<div class="item">
 				<figure>
@@ -86,7 +85,7 @@
 				<div class="info-product">
 					<h2>Zapatos Nike</h2>
 					<p   class="code" > <i class="fa-solid fa-barcode"></i> Codigo: 1</p>
-					<p  class ="stock" > <i class="fa-solid fa-box"></i>  Stock: #1</p>
+					<p  class ="stock" > <i class="fa-solid fa-box"></i>  Stock: #0</p>
 					<p  class ="marca"> <i class="fa-regular fa-copyright"></i> Marca: NIKE</p>
 					<div class="footer-product">
 						<button class="fa fa-shopping-cart btn-add-cart"></button>
@@ -105,7 +104,26 @@
 				<div class="info-product">
 					<h2>Zapatos Nike</h2>
 					<p   class="code" > <i class="fa-solid fa-barcode"></i> Codigo: 1</p>
-					<p  class ="stock" > <i class="fa-solid fa-box"></i>  Stock: #1</p>
+					<p  class ="stock" > <i class="fa-solid fa-box"></i>  Stock: #0</p>
+					<p  class ="marca"> <i class="fa-regular fa-copyright"></i> Marca: NIKE</p>
+					<div class="footer-product">
+						<button class="fa fa-shopping-cart btn-add-cart"></button>
+						<button><i class="fa-solid fa-dollar-sign">80</i></button>
+						<button><i class="fa-solid fa-info"></i></button>
+					</div>
+				</div>
+			</div> <!-- Fin Producto -->
+			<div class="item">
+				<figure>
+					<img
+						src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Zapatos Nike</h2>
+					<p   class="code"  > <i class="fa-solid fa-barcode"></i> Codigo: 1</p>
+					<p  class ="stock" data-stock="3"> <i class="fa-solid fa-box"></i>  Stock: #0</p>
 					<p  class ="marca"> <i class="fa-regular fa-copyright"></i> Marca: NIKE</p>
 					<div class="footer-product">
 						<button class="fa fa-shopping-cart btn-add-cart"></button>
@@ -124,7 +142,7 @@
 				<div class="info-product">
 					<h2>Zapatos Nike</h2>
 					<p   class="code" > <i class="fa-solid fa-barcode"></i> Codigo: 1</p>
-					<p  class ="stock" > <i class="fa-solid fa-box"></i>  Stock: #1</p>
+					<p  class ="stock"  > <i class="fa-solid fa-box"></i>  Stock: #0</p>
 					<p  class ="marca"> <i class="fa-regular fa-copyright"></i> Marca: NIKE</p>
 					<div class="footer-product">
 						<button class="fa fa-shopping-cart btn-add-cart"></button>
@@ -133,26 +151,7 @@
 					</div>
 				</div>
 			</div> <!-- Fin Producto -->
-			<div class="item">
-				<figure>
-					<img
-						src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-						alt="producto"
-					/>
-				</figure>
-				<div class="info-product">
-					<h2>Zapatos Nike</h2>
-					<p   class="code" > <i class="fa-solid fa-barcode"></i> Codigo: 1</p>
-					<p  class ="stock" > <i class="fa-solid fa-box"></i>  Stock: #1</p>
-					<p  class ="marca"> <i class="fa-regular fa-copyright"></i> Marca: NIKE</p>
-					<div class="footer-product">
-						<button class="fa fa-shopping-cart btn-add-cart"></button>
-						<button><i class="fa-solid fa-dollar-sign">80</i></button>
-						<button><i class="fa-solid fa-info"></i></button>
-					</div>
-				</div>
-			</div> <!-- Fin Producto -->
-			<div class="item">
+			<div class="item" data-stock="3">
 				<figure>
 					<img
 						src="/img/producto.webp"
@@ -161,8 +160,27 @@
 				</figure>
 				<div class="info-product">
 					<h2>Aceite</h2>
-					<p  class="code" > <i class="fa-solid fa-barcode"></i> Codigo: 1</p>
-					<p  class ="stock" > <i class="fa-solid fa-box"></i>  Stock: #1</p>
+					<p  class="code"  > <i class="fa-solid fa-barcode"></i> Codigo: 1</p>
+					<p  class ="stock" > <i class="fa-solid fa-box"></i>  Stock: #3</p>
+					<p  class ="marca"> <i class="fa-regular fa-copyright"></i> Marca: Shell</p>
+					<div class="footer-product">
+						<button class="fa fa-shopping-cart btn-add-cart"></button>
+						<button><i class="fa-solid fa-dollar-sign">80</i></button>
+						<button><i class="fa-solid fa-info"></i></button>
+					</div>
+				</div>
+			</div> <!-- Fin Producto -->
+			<div class="item" data-stock="3">
+				<figure>
+					<img
+						src="/img/producto.webp"
+						alt="producto"
+					/>
+				</figure>
+				<div class="info-product">
+					<h2>Aceite</h2>
+					<p  class="code"  > <i class="fa-solid fa-barcode"></i> Codigo: 1</p>
+					<p  class ="stock" > <i class="fa-solid fa-box"></i>  Stock: #3</p>
 					<p  class ="marca"> <i class="fa-regular fa-copyright"></i> Marca: Shell</p>
 					<div class="footer-product">
 						<button class="fa fa-shopping-cart btn-add-cart"></button>

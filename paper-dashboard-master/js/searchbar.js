@@ -3,7 +3,6 @@
     const productsList = document.querySelectorAll('.item');
     const filterButton = document.getElementById('filter-button');
     const filterOptions = document.getElementById('filter-options');
-    const filterMarca = document.getElementById('filter-marca');
     let filterOptionsVisible = false;
     
     searchInput.addEventListener('input', () => {
@@ -18,17 +17,16 @@
         });
     });
 
-
-    // Mostrar/ocultar opciones de filtro
-    filterButton.addEventListener('click', () => {
-        if (filterOptionsVisible) {
-            filterOptions.classList.add('hidden');
-        } else {
-            filterOptions.classList.remove('hidden');
-        }
+    // Mostrar/ocultar opciones de filtro con transición
+    filterButton.addEventListener('click', (event) => {
+        event.preventDefault(); // Previene el comportamiento predeterminado del botón
         filterOptionsVisible = !filterOptionsVisible;
+        if (filterOptionsVisible) {
+            filterOptions.classList.remove('hidden');
+            filterOptions.classList.add('visible');
+        } else {
+            filterOptions.classList.remove('visible');
+            filterOptions.classList.add('hidden');
+        }
     });
-
-    
-
 })();

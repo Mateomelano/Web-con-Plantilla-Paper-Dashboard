@@ -37,9 +37,8 @@ header {
     display: flex;
     align-items: center;
     flex-direction: row;
-    position: relative;
-    bottom: 250px;
-    left: px;
+    bottom: 900px;
+    position: fixed;
     width: 10%;
 
 }
@@ -147,7 +146,7 @@ header {
 /* Main */
 .container-items{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 20px;
     align-items: end;
     
@@ -256,6 +255,9 @@ header {
 
 .hidden{
     display: none;
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+
 }
 
 
@@ -275,11 +277,6 @@ header {
 }
 
 
-/* Search Container */
-
-
-
-/* Search Bar */
 /* Search Bar */
 .search-bar {
     display: flex;
@@ -295,6 +292,7 @@ header {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 20px;
+    margin-left: 10px;
 }
 
 .search-container {
@@ -304,7 +302,10 @@ header {
     padding: 20px 0;
     width: 100%;
     margin-top: 20px;
-    background-color: rgb(90, 90, 185);
+    background-color: rgb(21, 23, 139);
+    border-radius: 8px;
+    border: none;
+    transition: all 0.5s ease;
 }
 
 .search-bar-container {
@@ -342,11 +343,13 @@ header {
 
 .filter-options {
     margin: 20px;
-    width: 100%;  /* Ajustar al 100% */
     background-color: white;
     padding: 10px;
     border-radius: 8px;
     border: none;
+    transition: all 0.5s ease;
+    transform: scale(1.1);
+
 }
 
 select{
@@ -370,4 +373,44 @@ select{
     cursor: pointer;
     align-self: flex-end;  /* Alinearlo al final */
     margin-right: 10px;  /* Ajustar margen */
+}
+
+
+input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.items-per-page-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#itemsPerPageButton {
+    background-color: #3f51b5;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#itemsPerPageMenu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin-top: 5px;
+    z-index: 1;
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
 }
