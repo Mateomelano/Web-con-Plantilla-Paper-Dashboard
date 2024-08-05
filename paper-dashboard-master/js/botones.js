@@ -63,11 +63,12 @@
         });
         productCount.textContent = `${visibleProductsCount} productos encontrados`;
     }
+    
 
     // Initial filter to count all products
     filterProducts();
 
-
+    
 
 
 

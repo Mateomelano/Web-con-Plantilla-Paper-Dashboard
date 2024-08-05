@@ -3,8 +3,9 @@
     const productsList = document.querySelectorAll('.item');
     const filterButton = document.getElementById('filter-button');
     const filterOptions = document.getElementById('filter-options');
+    const filterPrecio = document.getElementById('filter-precio');
     let filterOptionsVisible = false;
-    
+
     searchInput.addEventListener('input', () => {
         const searchTerm = searchInput.value.toLowerCase();
         productsList.forEach(product => {
@@ -28,5 +29,31 @@
             filterOptions.classList.remove('visible');
             filterOptions.classList.add('hidden');
         }
+    });
+
+        // Filtrar por precio
+    filterPrecio.addEventListener('change', () => {
+        const order = filterPrecio.value;
+        const itemsArray = Array.from(productsList);
+
+        if (order === 'asc') {
+            itemsArray.sort((a, b) => {
+                const priceA = parseFloat(a.querySelector('.fa-dollar-sign').textContent);
+                const priceB = parseFloat(b.querySelector('.fa-dollar-sign').textContent);
+                return priceA - priceB;
+            });
+        } else if (order === 'desc') {
+            itemsArray.sort((a, b) => {
+                const priceA = parseFloat(a.querySelector('.fa-dollar-sign').textContent);
+                const priceB = parseFloat(b.querySelector('.fa-dollar-sign').textContent);
+                return priceB - priceA;
+            });
+        }
+
+        const container = document.querySelector('.container-items');
+        container.innerHTML = '';
+        itemsArray.forEach(item => {
+            container.appendChild(item);
+        });
     });
 })();
