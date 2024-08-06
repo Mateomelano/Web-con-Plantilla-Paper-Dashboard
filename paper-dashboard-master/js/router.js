@@ -92,6 +92,7 @@ export class Router {
         this.loadScripts('products-scripts', '/js/searchbar.js');
         this.loadScripts('products-scripts', '/js/searchmarca.js');
         this.loadScripts('products-scripts', '/js/botones.js');
+        this.loadScripts('products-scripts', '/js/select.js');
     }
 
     loadProductsStyles() {
