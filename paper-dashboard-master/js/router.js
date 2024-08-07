@@ -51,6 +51,7 @@ export class Router {
                             this.loadProductsStyles();
                             this.loadProductsScripts();
                             this.initProducts();
+                            this.inyection();
                         } else if (path === '/rubros') {
                             this.loadRubrosStyles();
                             this.initRubros();
@@ -88,12 +89,17 @@ export class Router {
     }
 
     loadProductsScripts() {
-        this.loadScripts('products-scripts', '/js/carrito.js');
-        this.loadScripts('products-scripts', '/js/searchbar.js');
-        this.loadScripts('products-scripts', '/js/searchmarca.js');
-        this.loadScripts('products-scripts', '/js/botones.js');
-        this.loadScripts('products-scripts', '/js/select.js');
+        // Llamar a removeAllScripts antes de cargar nuevos scripts
+        this.removeAllScripts();
+        
+        // Cargar scripts en el orden necesario
+        this.loadScripts('carrito-script', '/js/carrito.js');
+        this.loadScripts('searchbar-script', '/js/searchbar.js');
+        this.loadScripts('searchmarca-script', '/js/searchmarca.js');
+        this.loadScripts('botones-script', '/js/botones.js');
+        this.loadScripts('addrubro-script', '/js/addrubro.js');
     }
+    
 
     loadProductsStyles() {
         this.loadStyles('products-styles', '/css/productos.css');
@@ -128,9 +134,18 @@ export class Router {
     }
 
     loadScripts(id, src) {
+        // Eliminar el script existente si ya está en el DOM
+        const existingScript = document.getElementById(id);
+        if (existingScript) {
+            document.body.removeChild(existingScript);
+        }
+        
+        // Crear un nuevo script
         const script = document.createElement('script');
         script.id = id;
         script.src = src;
+        script.onload = () => console.log(`Script ${src} cargado correctamente`);
+        script.onerror = () => console.error(`Error al cargar el script ${src}`);
         document.body.appendChild(script);
     }
 
@@ -209,6 +224,64 @@ export class Router {
             }
         }
     }
+
+    inyection() {
+        let filtersInjected = false;
+    
+        function loadSelect(id) {
+            console.log('Cargando select con id:', id);
+            return fetch('filter-selects.html')  
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(html => {
+                    const div = document.createElement('div');
+                    div.innerHTML = html;
+                    const element = div.querySelector(id);
+                    if (!element) throw new Error(`Elemento con id ${id} no encontrado en filter-selects.html`);
+                    return element.outerHTML;
+                })
+                .catch(error => {
+                    console.error('Error al cargar el select:', error);
+                });
+        }
+    
+        function injectFilters() {
+            if (filtersInjected) return; // Salir si ya se inyectaron los filtros
+            filtersInjected = true;
+    
+            console.log("Entró a injectFilters");
+            const filterOptions = document.getElementById('filter-options');
+            const variable = 1; 
+    
+            if (variable === 1) {
+                console.log("Variable es 1, cargando selects...");
+                Promise.all([
+                    loadSelect('#filter-marca'),
+                    loadSelect('#filter-precio'),
+                    loadSelect('#filter-codigo')
+                ]).then(selectsHTML => {
+                    selectsHTML.forEach(selectHTML => {
+                        if (selectHTML) filterOptions.insertAdjacentHTML('beforeend', selectHTML);
+                    });
+                    // Llama a initializeFilters después de inyectar todos los selects
+                    setTimeout(() => {
+                        if (typeof window.initializeFilters === 'function') {
+                            window.initializeFilters();
+                        } else {
+                            console.error("initializeFilters no está definido");
+                        }
+                    }, 0); // Puede ajustar el tiempo si es necesario
+                });
+                
+            }
+        }
+    
+        console.log("Iniciando la inyección de filtros...");
+        document.addEventListener('DOMContentLoaded', injectFilters());
+    }
+    
 
     redirectToMenu() {
         window.location.hash = '#/menu';

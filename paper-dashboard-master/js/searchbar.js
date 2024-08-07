@@ -3,8 +3,6 @@
     const productsList = document.querySelectorAll('.item');
     const filterButton = document.getElementById('filter-button');
     const filterOptions = document.getElementById('filter-options');
-    const filterPrecio = document.getElementById('filter-precio');
-    const filterCodigo = document.getElementById('filter-codigo');
     let filterOptionsVisible = false;
 
     searchInput.addEventListener('input', () => {
@@ -32,55 +30,4 @@
         }
     });
 
-    // Filtrar por precio
-    filterPrecio.addEventListener('change', () => {
-        const order = filterPrecio.value;
-        const itemsArray = Array.from(productsList);
-
-        if (order === 'asc') {
-            itemsArray.sort((a, b) => {
-                const priceA = parseFloat(a.querySelector('.fa-dollar-sign').textContent);
-                const priceB = parseFloat(b.querySelector('.fa-dollar-sign').textContent);
-                return priceA - priceB;
-            });
-        } else if (order === 'desc') {
-            itemsArray.sort((a, b) => {
-                const priceA = parseFloat(a.querySelector('.fa-dollar-sign').textContent);
-                const priceB = parseFloat(b.querySelector('.fa-dollar-sign').textContent);
-                return priceB - priceA;
-            });
-        }
-
-        const container = document.querySelector('.container-items');
-        container.innerHTML = '';
-        itemsArray.forEach(item => {
-            container.appendChild(item);
-        });
-    });
-
-    // Filtrar por código
-    filterCodigo.addEventListener('change', () => {
-        const order = filterCodigo.value;
-        const itemsArray = Array.from(productsList);
-
-        if (order === 'asc') {
-            itemsArray.sort((a, b) => {
-                const codeA = parseInt(a.querySelector('.code').textContent.replace(/\D/g, ''));
-                const codeB = parseInt(b.querySelector('.code').textContent.replace(/\D/g, ''));
-                return codeA - codeB;
-            });
-        } else if (order === 'desc') {
-            itemsArray.sort((a, b) => {
-                const codeA = parseInt(a.querySelector('.code').textContent.replace(/\D/g, ''));
-                const codeB = parseInt(b.querySelector('.code').textContent.replace(/\D/g, ''));
-                return codeB - codeA;
-            });
-        }
-
-        const container = document.querySelector('.container-items');
-        container.innerHTML = '';
-        itemsArray.forEach(item => {
-            container.appendChild(item);
-        });
-    });
 })();

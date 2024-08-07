@@ -1,147 +1,83 @@
 (function() {
-    const btnCart = document.querySelector('.container-cart-icon');
-    const containerCartProducts = document.querySelector('.container-cart-products');
+    function initializeFilters() {
+        const filterMarca = document.getElementById('filter-marca');
+        const filterPrecio = document.getElementById('filter-precio');
+        const filterCodigo = document.getElementById('filter-codigo');
 
-    let isHidden = true;
 
-    btnCart.addEventListener('click', () => {
-        if (isHidden) {
-            containerCartProducts.classList.remove('hidden-cart');
-        } else {
-            containerCartProducts.classList.add('hidden-cart');
-        }
-        isHidden = !isHidden; // Alternar el estado
-    });
+        const filterProductsByMarca = (marca) => {
+            const items = document.querySelectorAll('.container-items .item');
+            items.forEach(item => {
+                const productMarca = item.querySelector('.marca').textContent.trim();
+                if (marca === 'all' || productMarca.includes(marca)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        };
 
-    const cartInfo = document.querySelector('.cart-product');
-    const rowProduct = document.querySelector('.row-product');
-    const productsList = document.querySelector('.container-items');
-    let allProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
-    const valorTotal = document.querySelector('.total-pagar');
-    const countProducts = document.querySelector('#contador-productos');
-    const cartEmpty = document.querySelector('.cart-empty');
-    const cartTotal = document.querySelector('.cart-total');
-    const filterMarca = document.querySelector('#filter-marca');
+        filterMarca.addEventListener('change', (e) => {
+            const selectedMarca = e.target.value;
+            filterProductsByMarca(selectedMarca);
+        });
 
-    const saveCart = () => {
-        localStorage.setItem('cartProducts', JSON.stringify(allProducts));
-    };
+        const productsList = document.querySelectorAll('.container-items .item');
 
-    productsList.addEventListener('click', e => {
-        if (e.target.classList.contains('btn-add-cart')) {
-            const product = e.target.closest('.item');
+        // Filtrar por precio
+        filterPrecio.addEventListener('change', () => {
+            const order = filterPrecio.value;
+            const itemsArray = Array.from(productsList);
 
-            const infoProduct = {
-                quantity: 1,
-                title: product.querySelector('h2').textContent,
-                price: product.querySelector('.fa-dollar-sign').textContent.trim(),
-            };
-
-            const exists = allProducts.some(
-                product => product.title === infoProduct.title
-            );
-
-            if (exists) {
-                const products = allProducts.map(product => {
-                    if (product.title === infoProduct.title) {
-                        product.quantity++;
-                        return product;
-                    } else {
-                        return product;
-                    }
+            if (order === 'asc') {
+                itemsArray.sort((a, b) => {
+                    const priceA = parseFloat(a.querySelector('.fa-dollar-sign').textContent);
+                    const priceB = parseFloat(b.querySelector('.fa-dollar-sign').textContent);
+                    return priceA - priceB;
                 });
-                allProducts = [...products];
-            } else {
-                allProducts = [...allProducts, infoProduct];
+            } else if (order === 'desc') {
+                itemsArray.sort((a, b) => {
+                    const priceA = parseFloat(a.querySelector('.fa-dollar-sign').textContent);
+                    const priceB = parseFloat(b.querySelector('.fa-dollar-sign').textContent);
+                    return priceB - priceA;
+                });
             }
 
-            saveCart();
-            showHTML();
-        }
-    });
-
-    rowProduct.addEventListener('click', e => {
-        if (e.target.classList.contains('icon-close')) {
-            const product = e.target.closest('.cart-product');
-            const title = product.querySelector('.titulo-producto-carrito').textContent;
-
-            allProducts = allProducts.filter(
-                product => product.title !== title
-            );
-
-            saveCart();
-            showHTML();
-        }
-    });
-
-    const showHTML = () => {
-        if (!allProducts.length) {
-            cartEmpty.classList.remove('hidden');
-            rowProduct.classList.add('hidden');
-            cartTotal.classList.add('hidden');
-        } else {
-            cartEmpty.classList.add('hidden');
-            rowProduct.classList.remove('hidden');
-            cartTotal.classList.remove('hidden');
-        }
-
-        rowProduct.innerHTML = '';
-
-        let total = 0;
-        let totalOfProducts = 0;
-
-        allProducts.forEach(product => {
-            const containerProduct = document.createElement('div');
-            containerProduct.classList.add('cart-product');
-
-            containerProduct.innerHTML = `
-                <div class="info-cart-product">
-                    <span class="cantidad-producto-carrito">${product.quantity}</span>
-                    <p class="titulo-producto-carrito">${product.title}</p>
-                    <span class="precio-producto-carrito">${product.price}</span>
-                </div>
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="icon-close"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                    />
-                </svg>
-            `;
-
-            rowProduct.append(containerProduct);
-
-            total += parseInt(product.quantity * product.price);
-            totalOfProducts += product.quantity;
+            const container = document.querySelector('.container-items');
+            container.innerHTML = '';
+            itemsArray.forEach(item => {
+                container.appendChild(item);
+            });
         });
 
-        valorTotal.innerText = `$${total}`;
-        countProducts.innerText = totalOfProducts;
-    };
+        // Filtrar por código
+        filterCodigo.addEventListener('change', () => {
+            const order = filterCodigo.value;
+            const itemsArray = Array.from(productsList);
 
-    const filterProductsByMarca = (marca) => {
-        const items = document.querySelectorAll('.container-items .item');
-        items.forEach(item => {
-            const productMarca = item.querySelector('.marca').textContent.trim();
-            if (marca === 'all' || productMarca.includes(marca)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
+            if (order === 'asc') {
+                itemsArray.sort((a, b) => {
+                    const codeA = parseInt(a.querySelector('.code').textContent.replace(/\D/g, ''));
+                    const codeB = parseInt(b.querySelector('.code').textContent.replace(/\D/g, ''));
+                    return codeA - codeB;
+                });
+            } else if (order === 'desc') {
+                itemsArray.sort((a, b) => {
+                    const codeA = parseInt(a.querySelector('.code').textContent.replace(/\D/g, ''));
+                    const codeB = parseInt(b.querySelector('.code').textContent.replace(/\D/g, ''));
+                    return codeB - codeA;
+                });
             }
+
+            const container = document.querySelector('.container-items');
+            container.innerHTML = '';
+            itemsArray.forEach(item => {
+                container.appendChild(item);
+            });
         });
-    };
+    }
 
-    filterMarca.addEventListener('change', (e) => {
-        const selectedMarca = e.target.value;
-        filterProductsByMarca(selectedMarca);
-    });
+    // Expone la función `initializeFilters` globalmente para que pueda ser llamada después de la inyección
+    window.initializeFilters = initializeFilters;
 
-    showHTML(); // Mostrar los productos al cargar la página
 })();
